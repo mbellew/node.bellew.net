@@ -17,4 +17,4 @@ run: all
 	node server.js
 
 deploy:
-	eb deploy
+	/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb deploy
