@@ -1,11 +1,11 @@
 ROOT=`pwd`
 
-all: _server _static
+build: _server _static
 
 _server: server.js
 
-server.js: server.ts
-	tsc server.ts -out server.js
+server.js: server/server.ts
+	tsc server/server.ts -out server.js
 
 _static: static/bellew.js
 	tsc static/bellew.ts -out static/bellew.js
@@ -13,8 +13,8 @@ _static: static/bellew.js
 static/bellew.js: static/bellew.ts
 	tsc static/bellew.ts -out static/bellew.js
 
-run: all
+_run: build
 	node server.js
 
-deploy:
+_deploy: build
 	/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb deploy
