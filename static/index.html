@@ -2,49 +2,45 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="headTitleElement">title</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="/static/bellew.js"></script>
+    <style>
+        body
+        {
+            padding-top: 50px;
+        }
+    </style>
 </head>
 <body>
-<div class="container-fluid">
-<div class="row">
-    <div class="col-xs-12 col-md-12">
-        <h1>h1. Bootstrap heading</h1>
-        <h2>h2. Bootstrap heading</h2>
-        <h3>h3. Bootstrap heading</h3>
-        <h4>h4. Bootstrap heading</h4>
-        <h5>h5. Bootstrap heading</h5>
-        <h6>h6. Bootstrap heading</h6>
-        <div id="content">
-            <a href="#about.html">click me</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#home">Bellew</a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#home">Home</a></li>
+                <!--<li><a href="#about">About</a></li>-->
+                <li><a href="#social">Social</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
+</nav>
+<div class="container">
+    <div id="bodyContent">
+    </div>
+</div><!-- /.container -->
 </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-12">
-            <a href="#about.html">click me</a>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis et nibh at ultrices. Nulla facilisi. Donec sapien justo, pretium eget laoreet auctor, sollicitudin id est. Suspendisse sit amet porta quam, vitae imperdiet sapien. Duis fringilla lacus augue. Aliquam sem ante, rutrum ut elit vitae, imperdiet pharetra nibh. Quisque pretium enim eget tincidunt placerat. Nulla tempor turpis non fermentum pellentesque. Morbi nisi tellus, consectetur et efficitur vel, interdum at leo.
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean ornare eget leo sed dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt magna sed nibh interdum, eget sollicitudin neque laoreet. Integer porttitor blandit elit, nec imperdiet ligula ultricies et. Duis erat augue, semper eget pretium at, varius quis nunc. Donec id nisl ullamcorper, consequat lectus ac, sagittis quam. Sed posuere mi id augue tempus imperdiet. Fusce malesuada bibendum ornare. Phasellus feugiat faucibus leo, vitae mattis libero vestibulum nec. Vestibulum laoreet vestibulum viverra. Pellentesque consequat eget lectus sed ultrices. Phasellus scelerisque lectus dui, sit amet tincidunt ex lacinia at. Curabitur in hendrerit ipsum.
-        </div>
-        <div class="col-xs-12 col-md-6">
-            Sed sit amet pharetra nunc. Curabitur sit amet aliquam eros. Proin condimentum pulvinar eros et dictum. Nunc placerat nunc in lacus elementum, vel fermentum dolor viverra. Fusce leo tortor, varius quis eros sit amet, scelerisque pellentesque est. Proin tempor turpis eu metus egestas sollicitudin. Vivamus suscipit semper magna in dignissim. Vestibulum mi felis, volutpat nec erat vitae, vulputate maximus tortor. Morbi facilisis quam sed metus luctus, eget ultricies dolor tincidunt. Nulla vitae quam in sem laoreet dignissim sit amet ut lacus. Mauris fringilla vehicula molestie. Nulla condimentum imperdiet congue. Donec at tristique sem.
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-            Vivamus suscipit condimentum scelerisque. Donec sit amet nulla sed magna vestibulum sollicitudin. Fusce lacinia ultrices enim ut maximus. Vestibulum tempus pretium elit, a luctus felis mollis eu. Quisque dictum malesuada magna id elementum. Nullam volutpat arcu et neque pretium maximus. Nam arcu nisl, tristique vel eleifend eget, egestas et orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </div>
-        <div class="col-xs-12 col-md-6">
-            Proin scelerisque et metus eget ornare. Morbi vel sollicitudin nulla, ac eleifend risus. Integer ac augue sed elit ultrices suscipit vitae et eros. Phasellus efficitur at ex ut congue. Curabitur tristique lorem vel viverra gravida. In pellentesque, orci a mattis sodales, felis ex varius nisl, blandit dictum nunc quam nec odio. Vestibulum libero risus, maximus et est consectetur, malesuada lobortis elit. Integer eget tincidunt lorem, sit amet bibendum augue. Nunc suscipit tincidunt dui, a porttitor risus. Nunc sed ullamcorper erat. Nulla viverra tincidunt justo sed fringilla.
-        </div>
-    </div>
 </div>
 </body>
 </html>

@@ -10,14 +10,16 @@ $(document).ready(function () {
         var hash = location.hash;
         if (hash && hash.charAt(0) == '#')
             hash = hash.substr(1);
-        if (-1 != hash.lastIndexOf(".html")) {
-            $("#content").html("loading " + htmlEncode(hash));
-            var path = "/static/" + hash;
-            $('#content').load(path);
-        }
-        else {
-            $("#content").html(location.hash || "hello world");
-        }
+        if (!hash)
+            return;
+        if (-1 == hash.lastIndexOf(".html"))
+            hash = hash + ".html";
+        $("#bodyContent").html("loading " + htmlEncode(hash));
+        var path = "/static/" + hash;
+        $('#bodyContent').load(path);
+        var navbar = $("#navbar");
+        $("li", navbar).removeClass("active");
+        $("li a[href='" + location.hash + "']", navbar).parent().addClass("active");
     }
     window.addEventListener("hashchange", Window_onHashChange, false);
     Window_onHashChange();
