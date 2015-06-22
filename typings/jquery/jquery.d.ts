@@ -304,6 +304,7 @@ interface JQuery {
     ajaxSuccess(handler: (evt: any, xml: any, opts: any) => any): JQuery;
     // MAB
     load(url:string);
+    load(url:string,handler:()=>any);
 
     serialize(): string;
     serializeArray(): any[];

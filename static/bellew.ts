@@ -24,7 +24,7 @@ $( document ).ready( function()
             hash = hash + ".html";
         $("#bodyContent").html("loading " + htmlEncode(hash));
         var path = "/static/" + hash;
-        $('#bodyContent').load(path);
+        $('#bodyContent').load(path + " DIV.content");
 
         var navbar = $("#navbar");
         $("li", navbar).removeClass("active");
@@ -33,4 +33,8 @@ $( document ).ready( function()
 
     window.addEventListener("hashchange", Window_onHashChange, false);
     Window_onHashChange();
+
+    // since there is no "home" page yet
+    if (!location.hash)
+        location.hash="#social";
 });
