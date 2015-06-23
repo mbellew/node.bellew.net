@@ -14,9 +14,13 @@ $(document).ready(function () {
             return;
         if (-1 == hash.lastIndexOf(".html"))
             hash = hash + ".html";
-        $("#bodyContent").html("loading " + htmlEncode(hash));
+        $('#bodyContent').hide();
         var path = "/static/" + hash;
-        $('#bodyContent').load(path); //  + " DIV.content");
+        $('#bodyContent').load(path, function () {
+            if ($('#bodyContent').is(":hidden")) {
+                $('#bodyContent').slideDown("fast");
+            }
+        });
         var navbar = $("#navbar");
         $("li", navbar).removeClass("active");
         $("li a[href='" + location.hash + "']", navbar).parent().addClass("active");
