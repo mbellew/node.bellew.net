@@ -2,12 +2,22 @@
   "name": "node.bellew.net",
   "version": "0.0.1",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+
+    "build:templates": "./node_modules/grunt-react/node_modules/react-tools/bin/jsx static/templates/*.jsx > static/templates.js",
+    "build:js": "tsc static/bellew.ts -out static/bellew.js",
+    "build:server": "tsc server/server.ts -out server.js",
+    "build": "npm run build:templates && npm run build:js && npm run build:server",
+
+    "run" : "npm run build && npm run start"
   },
   "dependencies": {
     "finalhandler": "latest",
+    "jsx": "latest",
+    "grunt": "latest",
+    "grunt-react": "latest",
     "serve-static": "latest",
     "tsc": "latest",
-    "jsx": "latest"
+    "watch": "latest"
   }
 }
