@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+</head>
+
+<body>
+<style>
+    ul
+    {
+        list-style-type: none;
+    }
+
+    div.card
+    {
+        text-align: center;
+        background-color:#eeeeee;
+        padding:15pt;
+        margin:15pt;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="">
+            <h1>Social</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" id="matt"></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" id="donna"></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" id="evie"></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" id="john"></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" id="helen"></div>
+</div>
+    </div>
+<script src="/static/templates/card.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var people = [
+        {
+            name: "Matthew",
+            target:$('#matt')[0],
+            img:"https://instagramimages-a.akamaihd.net/profiles/profile_837052284_75sq_1388540862.jpg",
+            links:[
+                {href:'https://instagram.com/matbelnet', text:'Instagram'},
+                {href:'https://www.labkey.org/', text:'LabKey'},
+                {href:"https://www.facebook.com/WashingtonAllianceforGunResponsibility",text:"Center for Gun Responsibility"}
+            ]
+        },
+        {
+            name: "Donna",
+            target:$('#donna')[0],
+            img:"https://instagramimages-a.akamaihd.net/profiles/profile_447745821_75sq_1372787533.jpg",
+            links:[
+                {href:'https://instagram.com/bellewd', text:'Instagram'},
+                {href:'https://www.facebook.com/donna.bellew.94', text:'Facebook'}
+            ]
+        },
+        {
+            name: "Evie",
+            target: $('#evie')[0],
+            img:"https://igcdn-photos-g-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-19/11008363_808176059256678_1698674812_a.jpg",
+            links:[
+                {href:'https://instagram.com/evieeblue', text:'Instagram'},
+                {href:'https://www.facebook.com/evie.bellew', text:'Facebook'},
+                {href:'https://vimeo.com/user17097391', text:'Vimeo'}
+            ]
+
+        },
+        {
+            name: "John",
+            target: $('#john')[0],
+            img:"https://instagramimages-a.akamaihd.net/profiles/profile_308881112_75sq_1399416754.jpg",
+            links:[
+                {href:'https://instagram.com/jown___', text:'Instagram'}
+            ]
+        },
+        {
+            name: "Helen",
+            target: $('#helen')[0],
+            img:"https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xat1/t51.2885-19/10914096_1461324477512403_485804869_a.jpg",
+            links:[
+                {href:'https://instagram.com/loubellew', text:'Instagram'},
+                {href:"http://chocolatismblog.weebly.com/", text:"Chocolatism"}
+            ]
+        },
+
+
+    ];
+    people.map(function(p){React.render(React.createElement(SocialCard,p), p.target);});
+});
+</script>
+</body>
+</html>
+

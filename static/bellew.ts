@@ -24,7 +24,7 @@ $( document ).ready( function()
             hash = hash + ".html";
         $("#bodyContent").html("loading " + htmlEncode(hash));
         var path = "/static/" + hash;
-        $('#bodyContent').load(path + " DIV.content");
+        $('#bodyContent').load(path); //  + " DIV.content");
 
         var navbar = $("#navbar");
         $("li", navbar).removeClass("active");
