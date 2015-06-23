@@ -1,16 +1,13 @@
 {
   "name": "node.bellew.net",
-
   "version": "0.0.1",
-
-  "scripts":
-  {
+  "scripts": {
     "start": "node server"
   },
-
-  "dependencies":
-  {
-    "finalhandler": "^0.3.6",
-    "serve-static": "^1.9.3"
+  "dependencies": {
+    "finalhandler": "latest",
+    "serve-static": "latest",
+    "tsc": "latest",
+    "jsx": "latest"
   }
 }
