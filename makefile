@@ -7,10 +7,10 @@ _server: server.js
 server.js: server/server.ts
 	tsc server/server.ts -out server.js
 
-_static: static/bellew.js static/templates/card.js
+_static: static/bellew.js static/templates.js
 
-static/templates/card.js : static/templates/card.jsx
-	jsx static/templates/card.jsx > static/templates/card.js
+static/templates.js : static/templates/card.jsx
+	jsx static/templates/*.jsx > static/templates.js
 
 static/bellew.js: static/bellew.ts
 	tsc static/bellew.ts -out static/bellew.js
