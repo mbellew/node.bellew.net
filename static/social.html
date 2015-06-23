@@ -6,16 +6,35 @@
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container-fluid" style="background-color:#ffffff;">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12" style="">
-            <h1>Social</h1>
+            <h1>WA</h1>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="matt"></div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="donna"></div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="evie"></div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="john"></div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="helen"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="">
+            <h1>MA</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="maxine"></div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="justine"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="">
+            <h1>KS</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="bill"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="">
+            <h1>MT</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="brendan"></div>
     </div>
 </div>
 <script src="/static/templates/card.js"></script>
@@ -71,8 +90,30 @@
                     {href:"http://chocolatismblog.weebly.com/", text:"Chocolatism"}
                 ]
             },
-
-
+            {
+                name:"Maxine",
+                target:$('#maxine')[0],
+                img:"",
+                links:[{href:"https://instagram.com/maxinebellew/", text:"Instagram"}]
+            },
+            {
+                name:"Justine",
+                target:$('#justine')[0],
+                img:"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p200x200/11230115_10152809916873093_4065958337465460758_n.jpg?oh=a252f316e36ba705ed5444de4bf2024d&oe=561E3FCB&__gda__=1441720410_4c3c1dbcb688033eefc4daa2dd051908",
+                links:[{href:"https://www.facebook.com/justine.bellewbavaro", text:"Facebook"}]
+            },
+            {
+                name:"Bill",
+                target:$('#bill')[0],
+                img:"https://scontent-sea1-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/26091_111809538850838_4417929_n.jpg?oh=30b89374cc2e3e58068011b5da9fb624&oe=55F1EB6F",
+                links:[{href:"https://www.facebook.com/bill.bellew.7", text:"Facebook"}]
+            },
+            {
+                name:"Brendan",
+                target:$('#brendan')[0],
+                img:"",
+                links:[{href:"https://www.nsa.gov/", text:"."}]
+            }
         ];
         people.map(function(p){React.render(React.createElement(SocialCard,p), p.target);});
     });
