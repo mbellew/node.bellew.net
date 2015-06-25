@@ -2,9 +2,10 @@
   "name": "node.bellew.net",
   "version": "0.0.1",
 
-  "config":{
+  "config": {
     "eb": "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb",
     "jsx": "./node_modules/grunt-react/node_modules/.bin/jsx",
+    "rt": "./node_modules/react-templates/bin/rt.js",
     "tsc": "./node_modules/.bin/tsc"
   },
 
@@ -12,7 +13,7 @@
   "scripts": {
     "start": "node server",
 
-    "build:templates": "$npm_package_config_jsx static/templates/*.jsx > static/templates.js",
+    "build:templates": "$npm_package_config_rt static/templates/*.rt && cat static/templates/*.rt.js > static/templates.js",
     "build:js": "$npm_package_config_tsc static/bellew.ts -out static/bellew.js",
     "build:server": "$npm_package_config_tsc server/server.ts -out server.js",
     "build": "npm run build:templates && npm run build:js && npm run build:server",
@@ -23,11 +24,13 @@
     "predeploy" : "npm run build",
     "deploy" : "$npm_package_config_eb deploy"
   },
+
   "dependencies": {
     "finalhandler": "latest",
     "jsx": "latest",
     "grunt": "latest",
     "grunt-react": "latest",
+    "react-templates": "latest",
     "serve-static": "latest",
     "tsc": "latest",
     "watch": "latest"

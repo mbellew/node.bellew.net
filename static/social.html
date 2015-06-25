@@ -114,7 +114,9 @@
                 links:[{href:"https://www.nsa.gov/", text:"."}]
             }
         ];
-        people.map(function(p){React.render(React.createElement(SocialCard,p), p.target);});
+
+        var CardRT = React.createClass({displayName: "CardRT", render:cardRT});
+        people.map(function(p){React.render(React.createElement(CardRT,p), p.target);});
     });
 </script>
 </body>
