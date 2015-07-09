@@ -4,6 +4,6 @@
 </td><td style="vertical-align:top;">
   <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24pt; font-weight:500; padding-left:20pt;">{this.props.name}</div>
   <ul style="list-style-type:none;">
-    <li rt-repeat="link in this.props.links"><a href={link.href}>{link.text}</a></li>
+    <li rt-repeat="link in this.props.links" key={link.key}><a href={link.href}>{link.text||link.key}</a></li>
   </ul>
 </div>

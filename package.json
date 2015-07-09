@@ -5,21 +5,20 @@
   "config": {
     "eb": "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb",
     "jsx": "./node_modules/grunt-react/node_modules/.bin/jsx",
-    "rt": "./node_modules/react-templates/bin/rt.js",
-    "tsc": "./node_modules/.bin/tsc"
+    "rt": "nodejs ./node_modules/react-templates/bin/rt.js",
+    "tsc": "nodejs ./node_modules/.bin/tsc"
   },
 
 
   "scripts": {
-    "start": "node server",
+    "start": "export PORT=80 && nodejs server",
 
-    "build:templates": "$npm_package_config_rt static/templates/*.rt && cat static/templates/*.rt.js > static/templates.js",
-    "build:js": "$npm_package_config_tsc static/bellew.ts -out static/bellew.js",
+    "build:js": "$npm_package_config_tsc static/bellew.ts -out static/bellew.js && $npm_package_config_rt static/templates/*.rt && cat static/templates/*.rt.js >> static/bellew.js",
     "build:server": "$npm_package_config_tsc server/server.ts -out server.js",
-    "build": "npm run build:templates && npm run build:js && npm run build:server",
+    "build": "npm run build:js && npm run build:server",
 
     "prerun" : "npm run build",
-    "run" : "node server",
+    "run" : "nodejs server",
 
     "predeploy" : "npm run build",
     "deploy" : "$npm_package_config_eb deploy"
