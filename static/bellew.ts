@@ -1,4 +1,5 @@
 /// <reference path='../typings/jquery/jquery.d.ts' />
+declare var ga: Function;
 
 $( document ).ready( function()
 {
@@ -23,12 +24,15 @@ $( document ).ready( function()
         if (-1 == hash.lastIndexOf(".html"))
             hash = hash + ".html";
 
-        $('#bodyContent').hide();
+        var bodyContent = $('#bodyContent');
+        bodyContent.hide();
         var path = "/static/" + hash;
-        $('#bodyContent').load(path, function ()
+        bodyContent.load(path, function ()
         {
-            if ($('#bodyContent').is(":hidden")) {
-                $('#bodyContent').slideDown("fast");
+            ga('set', 'page', location);
+            ga('send', 'pageview');
+            if (bodyContent.is(":hidden")) {
+                bodyContent.slideDown("fast");
             }
         });
 
@@ -37,7 +41,16 @@ $( document ).ready( function()
         $("li a[href='" + location.hash + "']", navbar).parent().addClass("active");
     }
 
+    function Window_onClick(a)
+    {
+        if (a.target.tagName === "A")
+        {
+            ga('send', 'event', 'link', 'click', a.target.href);
+        }
+    }
+
     window.addEventListener("hashchange", Window_onHashChange, false);
+    window.addEventListener('click', Window_onClick, false);
     Window_onHashChange();
 
     // since there is no "home" page yet
