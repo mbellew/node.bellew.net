@@ -1,4 +1,4 @@
-/// <reference path='../typings/jquery/jquery.d.ts' />
+/// <reference path='../../typings/jquery/jquery.d.ts' />
 declare var ga: Function;
 
 $( document ).ready( function()

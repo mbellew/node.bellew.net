@@ -4,13 +4,17 @@ export rt="nodejs ./node_modules/react-templates/bin/rt.js"
 export tsc="nodejs ./node_modules/.bin/tsc"
 export md="nodejs node_modules/marked/bin/marked"
 
-# static files
-cp src/*.html static/
-cp src/*.gif static/
-cp src/*.jpg static/
-cp src/*.js static/
-cp src/*.css static/
+mkdir dist 
+mkdir dist/static
+mkdir dist/server
 
+# static files
+cp src/static/*.html dist/static/
+cp src/static/*.gif dist/static/
+cp src/static/*.jpg dist/static/
+cp src/static/*.js dist/static/
+cp src/static/*.css dist/static/
+ 
 # markdown
 shopt -s nullglob
 for f in src/*.md
@@ -19,8 +23,9 @@ do
 done
 
 #script and template files
-$tsc src/bellew.ts -out static/bellew.js
-$rt src/templates/*.rt 
-cat src/templates/*.rt.js >> static/bellew.js
-rm src/templates/*.rt.js
-$tsc server/server.ts -out server.js
+$tsc src/static/bellew.ts -out dist/static/bellew.js
+$rt src/static/templates/*.rt 
+cat src/static/templates/*.rt.js >> dist/static/bellew.js
+rm  src/static/templates/*.rt.js
+
+$tsc src/server/server.ts -out dist/server/server.js
