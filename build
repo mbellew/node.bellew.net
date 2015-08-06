@@ -1,5 +1,3 @@
-export eb=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb
-export jsx=./node_modules/grunt-react/node_modules/.bin/jsx
 export rt="nodejs ./node_modules/react-templates/bin/rt.js"
 export tsc="nodejs ./node_modules/.bin/tsc"
 export md="nodejs node_modules/marked/bin/marked"
@@ -17,14 +15,18 @@ cp src/static/*.css dist/static/
  
 # markdown
 shopt -s nullglob
-for f in src/*.md
+for f in src/static/*.md
 do
-    $md $f -o static/$(basename "$f" .md).html
+    echo $md < $f > dist/static/$(basename "$f" .md).html
+    $md < $f > dist/static/$(basename "$f" .md).html
 done
 
 #script and template files
+echo $tsc src/static/bellew.ts -out dist/static/bellew.js
 $tsc src/static/bellew.ts -out dist/static/bellew.js
-$rt src/static/templates/*.rt 
+
+echo $rt src/static/templates/*.rt
+$rt src/static/templates/*.rt
 cat src/static/templates/*.rt.js >> dist/static/bellew.js
 rm  src/static/templates/*.rt.js
 
