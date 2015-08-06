@@ -6,6 +6,7 @@ export md="nodejs node_modules/marked/bin/marked"
 
 # static files
 cp src/*.html static/
+cp src/*.gif static/
 cp src/*.jpg static/
 cp src/*.js static/
 cp src/*.css static/
