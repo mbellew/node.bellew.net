@@ -1,2 +1,25 @@
-#! /bin/bash
-npm run build
+export eb=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb
+export jsx=./node_modules/grunt-react/node_modules/.bin/jsx
+export rt="nodejs ./node_modules/react-templates/bin/rt.js"
+export tsc="nodejs ./node_modules/.bin/tsc"
+export md=marked
+
+# static files
+cp src/*.html static/
+cp src/*.jpg static/
+cp src/*.js static/
+cp src/*.css static/
+
+# markdown
+shopt -s nullglob
+for f in src/*.md
+do
+    $md $f -o static/$(basename "$f" .md).html
+done
+
+#script and template files
+$tsc src/bellew.ts -out static/bellew.js
+$rt src/templates/*.rt 
+cat src/templates/*.rt.js >> static/bellew.js
+rm src/templates/*.rt.js
+$tsc server/server.ts -out server.js
