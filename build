@@ -2,7 +2,7 @@ export eb=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb
 export jsx=./node_modules/grunt-react/node_modules/.bin/jsx
 export rt="nodejs ./node_modules/react-templates/bin/rt.js"
 export tsc="nodejs ./node_modules/.bin/tsc"
-export md=marked
+export md="nodejs node_modules/marked/bin/marked"
 
 # static files
 cp src/*.html static/

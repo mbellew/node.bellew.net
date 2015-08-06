@@ -1,29 +1,22 @@
 {
   "name": "node.bellew.net",
   "version": "0.0.1",
-
   "config": {
     "eb": "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb",
     "jsx": "./node_modules/grunt-react/node_modules/.bin/jsx",
     "rt": "nodejs ./node_modules/react-templates/bin/rt.js",
     "tsc": "nodejs ./node_modules/.bin/tsc"
   },
-
-
   "scripts": {
     "start": "export PORT=80 && nodejs server",
-
     "build:js": "$npm_package_config_tsc static/bellew.ts -out static/bellew.js && $npm_package_config_rt static/templates/*.rt && cat static/templates/*.rt.js >> static/bellew.js",
     "build:server": "$npm_package_config_tsc server/server.ts -out server.js",
     "build": "npm run build:js && npm run build:server",
-
-    "prerun" : "npm run build",
-    "run" : "nodejs server",
-
-    "predeploy" : "npm run build",
-    "deploy" : "$npm_package_config_eb deploy"
+    "prerun": "npm run build",
+    "run": "nodejs server",
+    "predeploy": "npm run build",
+    "deploy": "$npm_package_config_eb deploy"
   },
-
   "dependencies": {
     "finalhandler": "latest",
     "jsx": "latest",
@@ -32,6 +25,7 @@
     "react-templates": "latest",
     "serve-static": "latest",
     "tsc": "latest",
-    "watch": "latest"
+    "watch": "latest",
+    "marked": "~0.3.5"
   }
 }
