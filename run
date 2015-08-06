@@ -1,2 +1,3 @@
 #! /bin/bash
-nodejs server
+cd dist
+nodejs server/server.js
