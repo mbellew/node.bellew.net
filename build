@@ -8,7 +8,7 @@ mkdir dist/www
 mkdir dist/www/static
 
 # static files
-cp serc/static/index.html dist/www/index.html
+cp src/static/index.html dist/www/index.html
 cp src/static/*.html dist/www/static/
 cp src/static/*.gif dist/www/static/
 cp src/static/*.jpg dist/www/static/
