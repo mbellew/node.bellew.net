@@ -3,31 +3,34 @@ export tsc="nodejs ./node_modules/.bin/tsc"
 export md="nodejs node_modules/marked/bin/marked"
 
 mkdir dist 
-mkdir dist/static
 mkdir dist/server
+mkdir dist/www
+mkdir dist/www/static
 
 # static files
-cp src/static/*.html dist/static/
-cp src/static/*.gif dist/static/
-cp src/static/*.jpg dist/static/
-cp src/static/*.js dist/static/
-cp src/static/*.css dist/static/
+cp serc/static/index.html dist/www/index.html
+cp src/static/*.html dist/www/static/
+cp src/static/*.gif dist/www/static/
+cp src/static/*.jpg dist/www/static/
+cp src/static/*.js dist/www/static/
+cp src/static/*.css dist/www/static/
  
 # markdown
 shopt -s nullglob
 for f in src/static/*.md
 do
-    echo $md < $f > dist/static/$(basename "$f" .md).html
-    $md < $f > dist/static/$(basename "$f" .md).html
+    echo $md < $f > dist/www/static/$(basename "$f" .md).html
+    $md < $f > dist/www/static/$(basename "$f" .md).html
 done
 
 #script and template files
-echo $tsc src/static/bellew.ts -out dist/static/bellew.js
-$tsc src/static/bellew.ts -out dist/static/bellew.js
+echo $tsc src/static/bellew.ts -out dist/www/static/bellew.js
+$tsc src/static/bellew.ts -out dist/www/static/bellew.js
 
 echo $rt src/static/templates/*.rt
 $rt src/static/templates/*.rt
-cat src/static/templates/*.rt.js >> dist/static/bellew.js
+cat src/static/templates/*.rt.js >> dist/www/static/bellew.js
 rm  src/static/templates/*.rt.js
 
+echo $tsc src/server/server.ts -out dist/www/server/server.js
 $tsc src/server/server.ts -out dist/server/server.js

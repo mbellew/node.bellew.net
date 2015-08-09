@@ -36,13 +36,17 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    var staticHost = '/static/';
+    //var staticHost = window.location.host==='www.bellew.net' ? '//static.bellew.net/static/' : '/static/';
+
     $(document).ready(function()
     {
         var people = [
             {
                 name: "Matthew",
                 target:$('#matt')[0],
-                img:"/static/matthew.jpg",
+                img: staticHost + "matthew.jpg",
                 links:[
                     {href:'https://instagram.com/matbelnet', key:'Instagram'},
                     {href:'https://www.labkey.org/', key:'LabKey'},
@@ -52,7 +56,7 @@
             {
                 name: "Donna",
                 target:$('#donna')[0],
-                img:"/static/donna.jpg",
+                img: staticHost + "donna.jpg",
                 links:[
                     {href:'https://instagram.com/bellewd', key:'Instagram'},
                     {href:'https://www.facebook.com/donna.bellew.94', key:'Facebook'}
@@ -61,7 +65,7 @@
             {
                 name: "Evie",
                 target: $('#evie')[0],
-                img:"/static/evie.jpg",
+                img: staticHost + "evie.jpg",
                 links:[
                     {href:'https://instagram.com/evieeblue', key:'Instagram'},
                     {href:'https://www.facebook.com/evie.bellew', key:'Facebook'},
@@ -72,7 +76,7 @@
             {
                 name: "John",
                 target: $('#john')[0],
-                img:"/static/john.jpg",
+                img: staticHost + "john.jpg",
                 links:[
                     {href:'https://instagram.com/jown___', key:'Instagram'}
                 ]
@@ -80,7 +84,7 @@
             {
                 name: "Helen",
                 target: $('#helen')[0],
-                img:"/static/helen.jpg",
+                img: staticHost + "helen.jpg",
                 links:[
                     {href:'https://instagram.com/loubellew', key:'Instagram'},
                     {href:"http://chocolatismblog.weebly.com/", key:"Chocolatism"}
@@ -89,13 +93,13 @@
             {
                 name:"Maxine",
                 target:$('#maxine')[0],
-                img:"/static/maxine.jpg",
+                img: staticHost + "maxine.jpg",
                 links:[{href:"https://instagram.com/maxinebellew/", key:"Instagram"}]
             },
             {
                 name:"Justine",
                 target:$('#justine')[0],
-                img:"/static/justine.jpg",
+                img: staticHost + "justine.jpg",
                 links:[
                     {href:"https://www.facebook.com/justine.bellewbavaro", key:"Facebook"},
                     {href:"https://instagram.com/jbavaro1719", key:"Instagram"}
@@ -104,13 +108,13 @@
             {
                 name:"Bill",
                 target:$('#bill')[0],
-                img:"/static/bill.jpg",
+                img: staticHost + "bill.jpg",
                 links:[{href:"https://www.facebook.com/bill.bellew.7", key:"Facebook"}]
             },
             {
                 name:"Brendan",
                 target:$('#brendan')[0],
-                img:"/static/brendan.jpg",
+                img: staticHost + "brendan.jpg",
                 links:[{href:"https://www.nsa.gov/", key:"."}]
             }
         ];

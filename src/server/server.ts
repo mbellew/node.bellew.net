@@ -6,6 +6,10 @@ var finalhandler = require('finalhandler');
 var serveStatic = require('serve-static');
 var serve = serveStatic("./",{'index': ['static/index.html'], setHeaders:setCustomCacheControl});
 
+var port = process.env.PORT || 8081;
+
+console.log("listening on port " + port);
+
 http.createServer(function(request, response)
 {
     var url = request.url;
@@ -23,7 +27,7 @@ http.createServer(function(request, response)
     }
 
     serve(request, response, finalhandler(request, response));
-}).listen(process.env.PORT || 8081);
+}).listen(port);
 
 
 function setCustomCacheControl(response, path)
@@ -34,8 +38,12 @@ function setCustomCacheControl(response, path)
 
 var apis =
 {
-    text : function(request,response)
+    test : function(request,response)
     {
         return {success:true};
+    },
+    hi : function(request,response)
+    {
+        return {success:true, message:'hello'};
     }
 };

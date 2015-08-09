@@ -1,0 +1,1 @@
+aws s3 sync ./dist/www s3://static.bellew.net/

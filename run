@@ -1,3 +1,6 @@
 #! /bin/bash
+pushd .
 cd dist
+export PORT=8081
 nodejs server/server.js
+popd
