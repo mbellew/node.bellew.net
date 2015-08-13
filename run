@@ -1,6 +1,6 @@
 #! /bin/bash
 pushd .
-cd dist
+cd dist/www
 export PORT=8081
-nodejs server/server.js
+nodejs ../server/server.js
 popd
