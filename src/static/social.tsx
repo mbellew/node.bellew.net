@@ -47,7 +47,7 @@ class Card extends React.Component<CardProps, {}>
                                 {
                                     return (
                                         <li	style={{whiteSpace: 'nowrap'}} key={link.key}>
-                                            <a href={link.href}><i style={{width:"16px"}} className={link.fa ? "fa fa-"+link.fa : 'fa fa-external-link'}>&nbsp;</i> {link.text||link.key}</a>
+                                            <a href={link.href}><i style={{width:"16px"}} className={link.fa ? "fa fa-"+link.fa : 'fa fa-external-link'}></i> {link.text||link.key}</a>
                                         </li> );
                                 })
                             }
