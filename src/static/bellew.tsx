@@ -29,23 +29,28 @@ $( document ).ready( function()
         var bodyContent = $('#bodyContent');
         bodyContent.hide();
 
-        //var path = "/static/" + hash + ".html";
-        // bodyContent.load(path, function ()
-        // {
-        //     ga('set', 'page', location);
-        //     ga('send', 'pageview');
-        //     if (bodyContent.is(":hidden")) {
-        //         bodyContent.slideDown("fast");
-        //     }
-        // });
-
-        bodyContent.html($('#page-'+hash).html());
+        if ($('#page-'+hash).length)
+        {
+            bodyContent.html($('#page-' + hash).html());
+            if (bodyContent.is(":hidden"))
+                bodyContent.slideDown("fast");
+        }
+        else
+        {
+            var path = "/static/" + hash + ".html";
+            bodyContent.load(path, function ()
+            {
+                ga('set', 'page', location);
+                ga('send', 'pageview');
+                if (bodyContent.is(":hidden")) {
+                    bodyContent.slideDown("fast");
+            }
+            });
+        }
 
         var navbar = $("#navbar");
         $("li", navbar).removeClass("active");
         $("li a[href='" + location.hash + "']", navbar).parent().addClass("active");
-        if (bodyContent.is(":hidden"))
-            bodyContent.slideDown("fast");
     }
 
     function Window_onClick(a)
