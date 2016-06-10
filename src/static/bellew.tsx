@@ -7,7 +7,7 @@ import React = require("react");
 
 $( document ).ready( function()
 {
-function htmlEncode(value)
+    function htmlEncode(value)
     {
         return $('<div/>').text(value).html();
     }
@@ -44,6 +44,8 @@ function htmlEncode(value)
         var navbar = $("#navbar");
         $("li", navbar).removeClass("active");
         $("li a[href='" + location.hash + "']", navbar).parent().addClass("active");
+        if (bodyContent.is(":hidden"))
+            bodyContent.slideDown("fast");
     }
 
     function Window_onClick(a)

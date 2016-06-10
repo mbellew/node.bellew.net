@@ -22,7 +22,7 @@
     "react": "latest",
     "react-dom": "latest",
     "serve-static": "latest",
-    "typescript": "1.8.9",
+    "typescript": "latest",
     "watch": "latest"
   }
 }

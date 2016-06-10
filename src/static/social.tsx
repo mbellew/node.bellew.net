@@ -36,7 +36,7 @@ class Card extends React.Component<CardProps, {}>
         var person = this.props.person;
         return (
             <div style={{backgroundColor:'#eeeeee', padding:'15pt', margin:'15pt'}}>
-                <table>
+                <table><tbody>
                     <tr><td>
                         <img width="150" height="150" src={person.img} />
                     </td>
@@ -53,7 +53,7 @@ class Card extends React.Component<CardProps, {}>
                             }
                         </ul>
                      </td></tr>
-                </table>
+                </tbody></table>
             </div>);
     }
 }
