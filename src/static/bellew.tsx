@@ -1,9 +1,13 @@
 /// <reference path='../../typings/jquery/jquery.d.ts' />
+/// <reference path='../../typings/react/react.d.ts' />
+
 declare var ga: Function;
+
+import React = require("react");
 
 $( document ).ready( function()
 {
-    function htmlEncode(value)
+function htmlEncode(value)
     {
         return $('<div/>').text(value).html();
     }
@@ -21,20 +25,21 @@ $( document ).ready( function()
 
         if (!hash)
             return;
-        if (-1 == hash.lastIndexOf(".html"))
-            hash = hash + ".html";
 
         var bodyContent = $('#bodyContent');
         bodyContent.hide();
-        var path = "/static/" + hash;
-        bodyContent.load(path, function ()
-        {
-            ga('set', 'page', location);
-            ga('send', 'pageview');
-            if (bodyContent.is(":hidden")) {
-                bodyContent.slideDown("fast");
-            }
-        });
+
+        //var path = "/static/" + hash + ".html";
+        // bodyContent.load(path, function ()
+        // {
+        //     ga('set', 'page', location);
+        //     ga('send', 'pageview');
+        //     if (bodyContent.is(":hidden")) {
+        //         bodyContent.slideDown("fast");
+        //     }
+        // });
+
+        bodyContent.html($('#page-'+hash).html());
 
         var navbar = $("#navbar");
         $("li", navbar).removeClass("active");

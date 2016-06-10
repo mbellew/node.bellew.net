@@ -1,6 +1,12 @@
-export rt="nodejs ./node_modules/react-templates/bin/rt.js"
-export tsc="nodejs ./node_modules/.bin/tsc"
-export md="nodejs node_modules/marked/bin/marked"
+#LINUX
+#export node=nodejs
+
+#WINDOWS
+export node=node.exe
+
+export tsc=" ./node_modules/.bin/tsc --jsx react --sourceMap"
+export rt="$node ./node_modules/react-templates/bin/rt.js"
+export md="$node node_modules/marked/bin/marked"
 
 mkdir dist 
 mkdir dist/server
@@ -14,7 +20,9 @@ cp src/static/*.gif dist/www/static/
 cp src/static/*.jpg dist/www/static/
 cp src/static/*.js dist/www/static/
 cp src/static/*.css dist/www/static/
- 
+cp node_modules/react/dist/* dist/www/static/
+cp node_modules/react-dom/dist/* dist/www/static/
+
 # markdown
 shopt -s nullglob
 for f in src/static/*.md
@@ -24,13 +32,11 @@ do
 done
 
 #script and template files
-echo $tsc src/static/bellew.ts -out dist/www/static/bellew.js
-$tsc src/static/bellew.ts -out dist/www/static/bellew.js
+echo $tsc src/static/bellew.tsx -outDir dist/www/static/
+$tsc src/static/bellew.tsx -outDir dist/www/static/
 
-echo $rt src/static/templates/*.rt
-$rt src/static/templates/*.rt
-cat src/static/templates/*.rt.js >> dist/www/static/bellew.js
-rm  src/static/templates/*.rt.js
+echo $tsc src/static/social.tsx -outDir dist/www/static/
+$tsc src/static/social.tsx -outDir dist/www/static/
 
-echo $tsc src/server/server.ts -out dist/www/server/server.js
-$tsc src/server/server.ts -out dist/server/server.js
+echo $tsc src/server/server.tsx -outDir dist/www/server/
+$tsc src/server/server.tsx -outDir dist/server/

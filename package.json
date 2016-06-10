@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "config": {
     "eb": "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb",
-    "jsx": "./node_modules/grunt-react/node_modules/.bin/jsx",
     "rt": "nodejs ./node_modules/react-templates/bin/rt.js",
-    "tsc": "nodejs ./node_modules/.bin/tsc"
+    "tsc": "./node_modules/bin/tsc --jsx react"
   },
   "scripts": {
     "start": "export PORT=80 && nodejs server",
@@ -19,13 +18,11 @@
   },
   "dependencies": {
     "finalhandler": "latest",
-    "jsx": "latest",
-    "grunt": "latest",
-    "grunt-react": "latest",
-    "react-templates": "latest",
+    "marked": "latest",
+    "react": "latest",
+    "react-dom": "latest",
     "serve-static": "latest",
-    "tsc": "latest",
-    "watch": "latest",
-    "marked": "~0.3.5"
+    "typescript": "1.8.9",
+    "watch": "latest"
   }
 }

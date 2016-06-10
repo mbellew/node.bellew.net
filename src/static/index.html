@@ -12,13 +12,16 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
+    <script src="/static/react.js"></script>
+    <script src="/static/react-dom.js"></script>
+    <script src="/static/react-with-addons.js"></script>
 
     <!-- polyfills -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 <!-- libraries.html --> 
 
-    <script src="/static/bellew.js"></script>
+    <script type="text/javascript" src="/static/bellew.js"></script>
+    <script type="text/javascript" src="/static/social.js"></script>
 </head>
 <body style="padding-top:50px; overflow-y:scroll;">
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -44,10 +47,59 @@
 <div id="bodyContent">
 </div><!-- /.container -->
 
+
+
+
+<div id="page-home" style="display:none;">
+Ain't got no home.
+</div>
+
+
+
+
+<div id="page-social"><!-- style="display:none;"> -->
+    <div class="container-fluid" style="background-color:#ffffff;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="">
+                <h1>WA</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="matt"></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="donna"></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="evie"></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="john"></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" id="helen"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="">
+                <h1>MA</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="maxine"></div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="justine"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="">
+                <h1>KS</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="bill"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="">
+                <h1>MT</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="brendan"></div>
+        </div>
+    </div>
+    <script>renderCards()</script>
+</div>
+
+
+
+
     <!-- Google Analytics -->
     <script async src='//www.google-analytics.com/analytics.js'></script>
     <script>
-        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        //window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        window.ga = function(){}
         ga('create', 'UA-65425082-1', 'auto');
         ga('send', 'pageview');
     </script>
