@@ -67,7 +67,7 @@ var people:Person[] = [
         links:[
             {href:'https://instagram.com/matbelnet', key:'Instagram', fa:'instagram'},
             {href:'https://www.labkey.org/', key:'LabKey', fa:'flask'},
-            {href:"https://www.facebook.com/WashingtonAllianceforGunResponsibility",key:"Center for Gun Responsibility"}
+            {href:"http://gunresponsibility.org/",key:"Alliance for Gun Responsibility"}
         ]
     },
     {
