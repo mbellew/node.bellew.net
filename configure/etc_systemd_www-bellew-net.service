@@ -2,12 +2,11 @@
 Description=simple web server
 
 [Service]
-ExecStart=cd /home/ubuntu/node.bellew.net && npm run start
-ExecReload=/bin/kill -HUP $MAINPID
+WorkingDirectory=/home/ubuntu/node.bellew.net
+ExecStart=/usr/bin/npm run start
 KillMode=process
 Restart=on-failure
-RestartPreventExitStatus=255
-Type=notify
+Type=simple
 
 [Install]
 WantedBy=multi-user.target
