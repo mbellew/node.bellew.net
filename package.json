@@ -4,25 +4,37 @@
   "config": {
     "eb": "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/eb",
     "rt": "nodejs ./node_modules/react-templates/bin/rt.js",
-    "tsc": "./node_modules/bin/tsc --jsx react"
+    "tsc": "./node_modules/.bin/tsc --jsx react"
   },
   "scripts": {
-    "start": "export PORT=80 && nodejs server",
-    "build:js": "$npm_package_config_tsc static/bellew.ts -out static/bellew.js && $npm_package_config_rt static/templates/*.rt && cat static/templates/*.rt.js >> static/bellew.js",
-    "build:server": "$npm_package_config_tsc server/server.ts -out server.js",
-    "build": "npm run build:js && npm run build:server",
+    "start": "cd dist/www && PORT=80 nodejs ../../server",
+    "build:www": "bash -c ./build",
+    "build:server": "$npm_package_config_tsc src/server/server.tsx -out server.js",
+    "build": "npm run build:www && npm run build:server",
     "prerun": "npm run build",
-    "run": "nodejs server",
+    "run": "cd dist/www && PORT=8081 nodejs ../../server",
     "predeploy": "npm run build",
     "deploy": "$npm_package_config_eb deploy"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "finalhandler": "latest",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
     "marked": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "serve-static": "latest",
-    "typescript": "latest",
+    "underscore": "^1.8.3",
     "watch": "latest"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.2.17",
+    "@types/node": "^8.5.2",
+    "@types/react": "^16.0.31",
+    "@types/react-dom": "^16.0.3",
+    "awesome-typescript-loader": "^3.4.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.6.2"
   }
 }

@@ -1,32 +1,32 @@
-/// <reference path='../../typings/jquery/jquery.d.ts' />
-/// <reference path='../../typings/react/react.d.ts' />
-
 declare var ga: Function;
 
+
 import React = require("react");
+import social = require("./social");
+
 
 $( document ).ready( function()
 {
-    function htmlEncode(value)
+    function htmlEncode(value :string)
     {
         return $('<div/>').text(value).html();
     }
 
-    function htmlDecode(value)
+    function htmlDecode(value :string)
     {
         return $('<div/>').html(value).text();
     }
 
     function Window_onHashChange()
     {
-        var hash = location.hash;
+        let hash = location.hash;
         if (hash && hash.charAt(0) == '#')
             hash = hash.substr(1);
 
         if (!hash)
             return;
 
-        var bodyContent = $('#bodyContent');
+        const bodyContent = $('#bodyContent');
         bodyContent.hide();
 
         if ($('#page-'+hash).length)
@@ -53,13 +53,16 @@ $( document ).ready( function()
         $("li a[href='" + location.hash + "']", navbar).parent().addClass("active");
     }
 
-    function Window_onClick(a)
+    function Window_onClick(event :Event)
     {
-        if (a.target.tagName === "A")
+        const target:any = event.target;
+        if (ga && target.tagName === "A")
         {
-            ga('send', 'event', 'link', 'click', a.target.href);
+            ga('send', 'event', 'link', 'click', target.href);
         }
     }
+
+    social.renderCards();
 
     window.addEventListener("hashchange", Window_onHashChange, false);
     window.addEventListener('click', Window_onClick, false);

@@ -1,27 +1,35 @@
 #LINUX
-#export node=nodejs
+export node=nodejs
 
 #WINDOWS
-export node=node.exe
+#export node=node.exe
 
 export tsc=" ./node_modules/.bin/tsc --jsx react --sourceMap"
 export rt="$node ./node_modules/react-templates/bin/rt.js"
 export md="$node node_modules/marked/bin/marked"
 
-mkdir dist 
-mkdir dist/server
-mkdir dist/www
-mkdir dist/www/static
+mkdir -p dist/server
+mkdir -p dist/www/static/bootstrap
+mkdir -p dist/www/static/font-awesome/css
+mkdir -p dist/www/static/font-awesome/fonts
+mkdir -p dist/www/static/jquery
+mkdir -p dist/www/static/react
+mkdir -p dist/www/static/underscore
 
 # static files
 cp src/static/index.html dist/www/index.html
-cp src/static/*.html dist/www/static/
-cp src/static/*.gif dist/www/static/
-cp src/static/*.jpg dist/www/static/
-cp src/static/*.js dist/www/static/
-cp src/static/*.css dist/www/static/
-cp node_modules/react/dist/* dist/www/static/
-cp node_modules/react-dom/dist/* dist/www/static/
+cp src/static/*.css      dist/www/static/
+cp src/static/*.html     dist/www/static/
+cp -u src/static/*.gif      dist/www/static/
+cp -u src/static/*.jpg      dist/www/static/
+cp -u node_modules/react/umd/*          dist/www/static/react
+cp -u node_modules/react-dom/umd/*      dist/www/static/react
+cp -u -R node_modules/bootstrap/dist/*  dist/www/static/bootstrap/
+cp -u node_modules/font-awesome/css/*   dist/www/static/font-awesome/css/
+cp -u node_modules/font-awesome/fonts/* dist/www/static/font-awesome/fonts/
+cp -u node_modules/jquery/dist/*        dist/www/static/jquery/
+cp -u node_modules/underscore/*         dist/www/static/underscore/
+
 
 # markdown
 shopt -s nullglob
@@ -32,11 +40,4 @@ do
 done
 
 #script and template files
-echo $tsc src/static/bellew.tsx -outDir dist/www/static/
-$tsc src/static/bellew.tsx -outDir dist/www/static/
-
-echo $tsc src/static/social.tsx -outDir dist/www/static/
-$tsc src/static/social.tsx -outDir dist/www/static/
-
-echo $tsc src/server/server.tsx -outDir dist/www/server/
-$tsc src/server/server.tsx -outDir dist/server/
+webpack

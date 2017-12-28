@@ -1,11 +1,8 @@
-/// <reference path='../../typings/jquery/jquery.d.ts' />
-/// <reference path='../../typings/react/react.d.ts' />
-/// <reference path='../../typings/react/react-dom.d.ts' />
-/// <reference path='../../typings/react/react-global.d.ts' />
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 
-
-var staticHost = '/static/';
+const staticHost = '/static/';
 
 interface Link
 {
@@ -14,6 +11,7 @@ interface Link
     fa?:string,
     text?:string
 }
+
 interface Person
 {
     name:string;
@@ -33,7 +31,7 @@ class Card extends React.Component<CardProps, {}>
 {
     render()
     {
-        var person = this.props.person;
+        const person = this.props.person;
         return (
             <div style={{backgroundColor:'#eeeeee', padding:'15pt', margin:'15pt'}}>
                 <table><tbody>
@@ -47,7 +45,7 @@ class Card extends React.Component<CardProps, {}>
                                 {
                                     return (
                                         <li	style={{whiteSpace: 'nowrap'}} key={link.key}>
-                                            <a href={link.href}><i style={{width:"16px"}} className={link.fa ? "fa fa-"+link.fa : 'fa fa-external-link'}></i> {link.text||link.key}</a>
+                                            <a href={link.href}><i style={{width:"16px"}} className={link.fa ? "fa fa-"+link.fa : 'fa fa-external-link'}/> {link.text||link.key}</a>
                                         </li> );
                                 })
                             }
@@ -59,7 +57,7 @@ class Card extends React.Component<CardProps, {}>
 }
 
 
-var people:Person[] = [
+const people:Person[] = [
     {
         name: "Matthew",
         target:'#matt',
@@ -137,9 +135,14 @@ var people:Person[] = [
     }
 ];
 
-function renderCards()
+
+
+
+export function renderCards()
 {
-    for (var i=0;i<people.length;i++)
-        people[i].key = "person["+i+"]";
-   people.map(function(person){ReactDOM.render(<Card person={person} key={person.key}/>, $(person.target)[0]);});
+    for (let i = 0; i < people.length; i++)
+        people[i].key = "person[" + i + "]";
+    people.map(function (person) {
+        ReactDOM.render(<Card person={person} key={person.key}/>, $(person.target)[0]);
+    });
 }

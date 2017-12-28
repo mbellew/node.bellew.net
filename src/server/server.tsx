@@ -1,5 +1,3 @@
-/// <reference path='../../typings/node/node.d.ts' />
-
 var http = require("http");
 
 var finalhandler = require('finalhandler');
