@@ -7,7 +7,7 @@
     "tsc": "./node_modules/.bin/tsc --jsx react"
   },
   "scripts": {
-    "start": "cd dist/www && PORT=80 nodejs ../../server",
+    "start": "cd dist/www && PORT=8080 nodejs ../../server",
     "build:www": "bash -c ./build",
     "build:server": "$npm_package_config_tsc src/server/server.tsx -out server.js",
     "build": "npm run build:www && npm run build:server",
