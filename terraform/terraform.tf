@@ -140,6 +140,7 @@ resource "aws_security_group_rule" "allow_ssh_inbound" {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group_rule" "allow_http_inbound" {
@@ -181,9 +182,7 @@ resource "aws_instance" "appserver_ec2"
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get -y update",
-      "sudo apt-get -y install git nodejs npm",
-      "sudo npm install -g webpack",
+      "sudo apt-get -y install git",
       "git clone https://github.com/mbellew/node.bellew.net.git",
       "cd node.bellew.net",
       "source ./configure/ami_install"

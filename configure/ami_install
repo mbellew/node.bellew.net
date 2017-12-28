@@ -1,10 +1,10 @@
-#sudo apt-get -y update
-#sudo apt-get -y install git nodejs npm
-#sudo npm install -g webpack
-#git clone https://github.com/mbellew/node.bellew.net.git
-#cd node.bellew.net
+sudo apt-get -y update
+sudo apt-get -y install nodejs npm
+sudo npm install -g webpack
+
+cd /home/ubuntu/node.bellew.net
 npm update
 npm run build
-sudo cp configure/etc_systemd_www-bellew-net.service /etc/systemd/system/multi-user.target.wants/www-bellew-net.service
+sudo systemctl enable /home/ubuntu/node.bellew.net/configure/www-bellew-net.service
 sudo systemctl daemon-reload
 sudo systemctl restart www-bellew-net.service
