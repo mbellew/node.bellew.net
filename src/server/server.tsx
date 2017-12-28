@@ -2,9 +2,9 @@ var http = require("http");
 
 var finalhandler = require('finalhandler');
 var serveStatic = require('serve-static');
-var serve = serveStatic("./",{'index': ['static/index.html'], setHeaders:setCustomCacheControl});
+var serveWWW = serveStatic("./www",{'index': ['static/index.html'], setHeaders:setCustomCacheControl});
 
-var port = process.env.PORT || 8081;
+var port = process.env.PORT || 8080;
 
 console.log("listening on port " + port);
 
@@ -24,7 +24,7 @@ http.createServer(function(request, response)
         }
     }
 
-    serve(request, response, finalhandler(request, response));
+    serveWWW(request, response, finalhandler(request, response));
 }).listen(port);
 
 

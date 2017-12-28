@@ -7,12 +7,12 @@
     "tsc": "./node_modules/.bin/tsc --jsx react"
   },
   "scripts": {
-    "start": "cd dist/www && PORT=8080 nodejs ../../server",
+    "start": "cd dist && nodejs server",
     "build:www": "bash -c ./build",
-    "build:server": "$npm_package_config_tsc src/server/server.tsx -out server.js",
+    "build:server": "$npm_package_config_tsc src/server/server.tsx -out dist/server.js",
     "build": "npm run build:www && npm run build:server",
     "prerun": "npm run build",
-    "run": "cd dist/www && PORT=8081 nodejs ../../server",
+    "run": "cd dist && PORT=8081 nodejs server",
     "predeploy": "npm run build",
     "deploy": "$npm_package_config_eb deploy"
   },

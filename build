@@ -17,11 +17,11 @@ mkdir -p dist/www/static/react
 mkdir -p dist/www/static/underscore
 
 # static files
-cp src/static/index.html dist/www/index.html
-cp src/static/*.css      dist/www/static/
-cp src/static/*.html     dist/www/static/
-cp -u src/static/*.gif      dist/www/static/
-cp -u src/static/*.jpg      dist/www/static/
+cp src/www/index.html dist/www/index.html
+cp src/www/*.css      dist/www/static/
+cp src/www/*.html     dist/www/static/
+cp -u src/www/*.gif      dist/www/static/
+cp -u src/www/*.jpg      dist/www/static/
 cp -u node_modules/react/umd/*          dist/www/static/react
 cp -u node_modules/react-dom/umd/*      dist/www/static/react
 cp -u -R node_modules/bootstrap/dist/*  dist/www/static/bootstrap/
@@ -33,7 +33,7 @@ cp -u node_modules/underscore/*         dist/www/static/underscore/
 
 # markdown
 shopt -s nullglob
-for f in src/static/*.md
+for f in src/www/*.md
 do
     echo $md < $f > dist/www/static/$(basename "$f" .md).html
     $md < $f > dist/www/static/$(basename "$f" .md).html

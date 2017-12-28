@@ -1,6 +1,6 @@
 module.exports =
 {
-    entry: "./src/static/bellew.tsx",
+    entry: "./src/www/bellew.tsx",
 
     output:
     {
