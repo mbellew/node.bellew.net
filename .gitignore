@@ -1,3 +1,5 @@
+#vi
+*.swp
 #react template
 *.rt.js
 #typescript artifacts
