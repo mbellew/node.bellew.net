@@ -4,7 +4,7 @@
 
 # STATE
 terraform {
-  required_version = ">= 0.9.2"
+  required_version = ">= 0.11.1"
   backend "s3" {
     bucket = "secret.bellew.net"
     key = "terraform/www-bellew-net/terraform.tfstate"
@@ -26,8 +26,9 @@ variable "azs" {
   }
 }
 
-
+##
 ## VPC
+##
 
 resource "aws_vpc" "vpc"
 {
@@ -66,6 +67,17 @@ resource "aws_subnet" "public_subnet"
   }
 }
 
+resource "aws_subnet" "public_alternate_subnet" {
+  availability_zone       = "${element(split(",", lookup(var.azs, var.region)), 1)}"
+  vpc_id                  = "${aws_vpc.vpc.id}"
+  cidr_block              = "${cidrsubnet(aws_vpc.vpc.cidr_block,8,1)}"
+  map_public_ip_on_launch = true
+  depends_on = ["aws_internet_gateway.gw"]
+
+  tags {
+    VPC  = "bellew-vpc"
+  }
+}
 
 resource "aws_route_table" "public_rtb"
 {
@@ -96,6 +108,129 @@ resource "aws_route_table_association" "public_gw_rta"
   route_table_id = "${aws_route_table.public_rtb.id}"
 }
 
+resource "aws_route_table_association" "public_alternate_gw_rta"
+{
+  subnet_id      = "${aws_subnet.public_alternate_subnet.id}"
+  route_table_id = "${aws_route_table.public_rtb.id}"
+}
+
+
+##
+## ALB
+##
+
+resource "aws_security_group" "internet_access"
+{
+  vpc_id = "${aws_vpc.vpc.id}"
+
+  name        = "allow_all_sg"
+  description = "Allow all inbound traffic"
+}
+resource "aws_security_group_rule" "internet_access_tcp_ingress"
+{
+  type            = "ingress"
+  from_port       = 0
+  to_port         = 65535
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.internet_access.id}"
+}
+
+resource "aws_security_group" "alb_sg"
+{
+  vpc_id = "${aws_vpc.vpc.id}"
+  name = "alb_sg"
+  description = "security group for elb"
+}
+resource "aws_security_group_rule" "alb_http_all"
+{
+  type            = "ingress"
+  from_port       = 80
+  to_port         = 80
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.alb_sg.id}"
+}
+resource "aws_security_group_rule" "alb_http8080_all"
+{
+  type            = "ingress"
+  from_port       = 8080
+  to_port         = 8080
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.alb_sg.id}"
+}
+resource "aws_security_group_rule" "alb_https_all"
+{
+  type            = "ingress"
+  from_port       = 443
+  to_port         = 443
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.alb_sg.id}"
+}
+resource "aws_security_group_rule" "alb_allow_egress"
+{
+  type            = "egress"
+  from_port       = 0
+  to_port         = 65335
+  protocol        = "tcp"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.alb_sg.id}"
+}
+
+
+resource "aws_alb" "vpc_alb"
+{
+  name            = "alb-bellew-net"
+  internal        = false
+  subnets         = ["${aws_subnet.public_subnet.id}", "${aws_subnet.public_alternate_subnet.id}"]
+  security_groups = [
+    "${aws_security_group.internet_access.id}",
+    "${aws_security_group.alb_sg.id}"
+  ]
+
+  tags {
+    VPC  = "bellew-vpc"
+  }
+}
+
+resource "aws_alb_target_group" "default"
+{
+  name     = "default-tg"
+  port     = "8080"
+  protocol = "HTTP"
+  vpc_id   = "${aws_vpc.vpc.id}"
+
+  health_check
+  {
+    protocol = "HTTP"
+    healthy_threshold   = 2
+    interval            = 15
+    path                = "/"
+    matcher             = "200"
+    timeout             = 5
+    unhealthy_threshold = 5
+  }
+
+  tags
+  {
+    VPC  = "bellew-vpc"
+  }
+}
+
+resource "aws_alb_listener" "alb_http_listener"
+{
+  load_balancer_arn = "${aws_alb.vpc_alb.arn}"
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action
+  {
+    target_group_arn = "${aws_alb_target_group.default.arn}"
+    type             = "forward"
+  }
+}
 
 
 ##
@@ -178,15 +313,23 @@ resource "aws_instance" "appserver_ec2"
   instance_type = "t2.small"
   key_name = "${var.key_name}"
   subnet_id  = "${aws_subnet.public_subnet.id}"
-  vpc_security_group_ids = ["${aws_security_group.appserver_sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.appserver_sg.id}", "${aws_security_group.alb_sg.id}"]
 
-  provisioner "remote-exec" {
+  provisioner "remote-exec"
+  {
     inline = [
       "sudo apt-get -y install git",
       "git clone https://github.com/mbellew/node.bellew.net.git",
       "cd node.bellew.net",
-      "source ./configure/ami_install"
+      "chmod +x ./configure/ami_install",
+      "./configure/ami_install"
     ]
+    connection
+    {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file("${var.key_name}.pem")}"
+    }
   }
 
   tags {
@@ -194,6 +337,12 @@ resource "aws_instance" "appserver_ec2"
   }
 }
 
+resource "aws_alb_target_group_attachment" "tg_attachment"
+{
+  target_group_arn = "${aws_alb_target_group.default.arn}"
+  target_id        = "${aws_instance.appserver_ec2.id}"
+  port             = "8080"
+}
 
 resource "aws_eip" "static_ip"
 {
