@@ -1,7 +1,8 @@
 #!/bin/bash
 sudo apt-get -y update
 sudo apt-get -y install nodejs npm
-sudo npm install --force -g webpack
+sudo npm install -g webpack-cli
+sudo npm install -g webpack
 
 cd /home/ubuntu/node.bellew.net
 npm update
