@@ -54,7 +54,8 @@ function isprint(char)
 }
 function onKeyPress()
 {
-	console.log("KEY:" + event.key);
+	if (event.ctrlKey || event.metaKey)
+	    return;
 	var prev_cursor = {row:State.cursor.row, col:State.cursor.col };
 	if (event.key.length == 1)
 	{
