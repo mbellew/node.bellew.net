@@ -15,11 +15,17 @@ CharData.prototype =
 	    this.el = this.el || document.getElementById(this.id);
 		if (this.el)
 		{
-			if (this.char == ' ')
-				this.el.innerHTML = '&nbsp;';
+			var html = '&nbsp;'
+			if (this.char == ' ' || this.opacity <= 0)
+				html = '&nbsp';	
+			if (this.char == '<')
+				html = '&lt;';
 			else
-				this.el.innerText = this.char;
-			this.el.style.opacity = this.opacity;
+				html = this.char;
+			if (this.opacity > 0 && this.opacity < 1)
+				this.el.innerHTML= '<span style="opacity:' + this.opacity + '">' + html + '</span>';
+			else
+				this.el.innerHTML= html;
 			var selected = (this.row == State.cursor.row && this.col == State.cursor.col);
 			this.el.className = selected ? "selected" : "";
 		}
@@ -30,7 +36,7 @@ CharData.prototype =
 		  return;
 		this.opacity = this.opacity*0.99 - 0.005;
 		if (this.opacity <= 0)
-		    this.char == ' ';
+		    this.char = ' ';
 		this.update();
 	}
 };
@@ -104,7 +110,8 @@ function onLoad()
 	document.body.onkeydown=onKeyPress;
 	drawApp();
 	fadeAll();
-}
+	State.chars[State.cursor.row][State.cursor.col].update();
+} 
 function fadeAll()
 {
 	for (var r=0 ; r<ROWS; r++)
@@ -134,7 +141,8 @@ function drawApp()
 }
 function setupWebSocket()
 {		
-	ws = new WebSocket("ws://localhost:8001/")
+	ws = new WebSocket("ws://34.216.152.61:8081/");
+	//ws = new WebSocket("ws://www.bellew.net:81/")
 	ws.onmessage = function (evt) 
 	{ 
 		var change = JSON.parse(evt.data);

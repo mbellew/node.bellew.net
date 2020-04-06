@@ -12,7 +12,7 @@
     "build:server": "$npm_package_config_tsc src/server/server.tsx -out dist/server.js",
     "build": "npm run build:www && npm run build:server",
     "prerun": "npm run build",
-    "run": "cd dist && PORT=8081 nodejs server",
+    "run": "cd dist && PORT=8080 nodejs server",
     "predeploy": "npm run build",
     "deploy": "$npm_package_config_eb deploy"
   },
