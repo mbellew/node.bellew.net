@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 
-const staticHost = '/static/';
+const staticHost = 'static/';
 
 interface Link
 {
@@ -94,7 +94,8 @@ const people:Person[] = [
         target: '#john',
         img: staticHost + "john.jpg",
         links:[
-            {href:'https://instagram.com/jown___', key:'Instagram', fa:'instagram'}
+            {href:'https://www.instagram.com/squid.scum/', key:'Instagram', fa:'instagram'},
+            {href:'https://www.sablearts.com/', key:'Web site', fa:'link'}
         ]
     },
     {
